@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="textColorPrimary" format="reference"/>
+    <attr name="textColorSecondary" format="reference"/>
+    <attr name="textColorConnected" format="reference"/>
+    <attr name="textColorDisConnected" format="reference"/>
+    <attr name="themeColorPrimary" format="reference"/>
+    <attr name="themeColorOnPrimary" format="reference"/>
+    <attr name="bottomAppBarColor" format="reference"/>
+    <attr name="fabColor" format="reference"/>
+    <attr name="fabTint" format="reference"/>
+</resources>
