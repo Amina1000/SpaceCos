@@ -19,12 +19,13 @@ import com.cocos.develop.spacecos.ui.navigation.BottomNavigationDrawerFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
+private const val WIKI_URL = "https://en.wikipedia.org/wiki/"
+
 class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
         private var isMain = true
-        private val wikiUrl = "https://en.wikipedia.org/wiki/"
     }
 
     //Ленивая инициализация модели
@@ -49,7 +50,7 @@ class MainFragment : Fragment() {
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data =
-                    Uri.parse(wikiUrl +binding.inputEditText.text.toString())
+                    Uri.parse(WIKI_URL + binding.inputEditText.text.toString())
             })
         }
 
@@ -87,7 +88,7 @@ class MainFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getData().observe(viewLifecycleOwner) { renderData(it) }
+        viewModel.getPictureOfTheDay().observe(viewLifecycleOwner) { renderData(it) }
     }
 
     private fun renderData(data: AppStates) {
@@ -149,6 +150,6 @@ class MainFragment : Fragment() {
     }
 
     interface Controller {
-        fun openSettingsScreen();
+        fun openSettingsScreen()
     }
 }

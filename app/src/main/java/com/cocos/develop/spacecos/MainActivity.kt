@@ -11,14 +11,14 @@ class MainActivity : AppCompatActivity(), MainFragment.Controller {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getPreference()
+        setAppSettings()
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             loadFragment(MainFragment.newInstance())
         }
     }
 
-    private fun getPreference() {
+    private fun setAppSettings() {
         val preferenceManager = PreferenceManager.getDefaultSharedPreferences(application)
         val spaceTheme = preferenceManager.getBoolean("select_theme", true)
         if (spaceTheme) {
