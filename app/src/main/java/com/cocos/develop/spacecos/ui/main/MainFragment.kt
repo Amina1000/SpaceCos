@@ -24,6 +24,7 @@ class MainFragment : Fragment() {
     companion object {
         fun newInstance() = MainFragment()
         private var isMain = true
+        private val wikiUrl = "https://en.wikipedia.org/wiki/"
     }
 
     //Ленивая инициализация модели
@@ -48,7 +49,7 @@ class MainFragment : Fragment() {
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data =
-                    Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+                    Uri.parse(wikiUrl +binding.inputEditText.text.toString())
             })
         }
 

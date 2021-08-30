@@ -5,7 +5,7 @@
         <EditTextPreference
             app:key="signature"
             app:title="@string/signature_title"
-            app:useSimpleSummaryProvider="true" />
+            app:useSimpleSummaryProvider="true"/>
 
     </PreferenceCategory>
 
@@ -14,7 +14,7 @@
             app:key="select_theme"
             app:summaryOff="@string/attachment_summary_off"
             app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
+            app:title="@string/attachment_title"/>
 
     </PreferenceCategory>
 

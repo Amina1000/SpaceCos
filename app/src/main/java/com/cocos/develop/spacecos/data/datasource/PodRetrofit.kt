@@ -1,9 +1,12 @@
 package com.cocos.develop.spacecos.data.datasource
 
+import com.cocos.develop.spacecos.BuildConfig
+import com.cocos.develop.spacecos.data.PodServerResponseData
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
@@ -14,16 +17,22 @@ import java.io.IOException
  * @author Amina
  * 27.08.2021
  */
-class PODRetrofitImpl {
+class PodRetrofit {
+
     private val baseUrl = "https://api.nasa.gov/"
 
-    fun getRetrofitImpl(): NasaApi {
-        val podRetrofit = Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
-            .client(createOkHttpClient(PODInterceptor()))
-            .build()
-        return podRetrofit.create(NasaApi::class.java)
+    private val nasaApi = Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .addConverterFactory(
+            GsonConverterFactory.create(
+                GsonBuilder().setLenient().create()
+            )
+        )
+        .client(createOkHttpClient(PodInterceptor()))
+        .build().create(NasaApi::class.java)
+
+    fun getPictureOfTheDay(apiKey: String): Call<PodServerResponseData> {
+       return nasaApi.getPictureOfTheDay(apiKey)
     }
 
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
@@ -33,7 +42,7 @@ class PODRetrofitImpl {
         return httpClient.build()
     }
 
-    inner class PODInterceptor : Interceptor {
+    inner class PodInterceptor : Interceptor {
 
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
