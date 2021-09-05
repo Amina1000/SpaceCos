@@ -1,14 +1,20 @@
 package com.cocos.develop.spacecos.ui.api
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.datasource.FragmentFactoryApi
 import com.cocos.develop.spacecos.databinding.ActivityApiBinding
 import com.cocos.develop.spacecos.ui.earth.EarthFragment
+import com.cocos.develop.spacecos.ui.main.MainActivity
 import com.cocos.develop.spacecos.ui.mars.MarsFragment
+import com.cocos.develop.spacecos.ui.settings.SettingsFragment
 import com.cocos.develop.spacecos.ui.weather.WeatherFragment
+import com.cocos.develop.spacecos.utils.getAppSettings
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
@@ -25,7 +31,37 @@ class ApiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_api)
+        setAppSettings()
+        initViewPage()
+        initNavigationMenu()
+    }
 
+    private fun setAppSettings() {
+        val spaceTheme = getAppSettings(application)
+        if (spaceTheme) {
+            setTheme(R.style.SpaceThemeStyle)
+        } else {
+            setTheme(R.style.BaseThemeStyle)
+        }
+    }
+   private fun initNavigationMenu() {
+        binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.bottom_view_home -> {
+                    startActivity(Intent(this@ApiActivity, MainActivity::class.java))
+                    true
+                }
+                R.id.bottom_view_favorite -> {
+                    Toast.makeText(this@ApiActivity, getString(R.string.favourite), Toast.LENGTH_SHORT).show()
+                    true
+                }
+                else -> false
+            }
+        }
+
+    }
+
+    private fun initViewPage() {
         with(binding.viewPager) {
             adapter = ViewPagerAdapter(this@ApiActivity, fragments)
         }
@@ -33,12 +69,11 @@ class ApiActivity : AppCompatActivity() {
             fragments[pos].let {
                 tab.text = it.title
                 tab.setIcon(it.iconResId)
-                 it.badgeNumber?.let {number->
-                     tab.orCreateBadge.number = number
-                 }
+                it.badgeNumber?.let { number ->
+                    tab.orCreateBadge.number = number
+                }
             }
         }.attach()
-
     }
 
     private fun listFragments() = listOf(

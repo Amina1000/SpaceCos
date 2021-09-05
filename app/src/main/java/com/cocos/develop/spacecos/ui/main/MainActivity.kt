@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.ui.settings.SettingsFragment
+import com.cocos.develop.spacecos.utils.getAppSettings
 
 class MainActivity : AppCompatActivity(), MainFragment.Controller {
 
@@ -19,8 +20,7 @@ class MainActivity : AppCompatActivity(), MainFragment.Controller {
     }
 
     private fun setAppSettings() {
-        val preferenceManager = PreferenceManager.getDefaultSharedPreferences(application)
-        val spaceTheme = preferenceManager.getBoolean("select_theme", true)
+        val spaceTheme = getAppSettings(application)
         if (spaceTheme) {
             setTheme(R.style.SpaceThemeStyle)
         } else {
