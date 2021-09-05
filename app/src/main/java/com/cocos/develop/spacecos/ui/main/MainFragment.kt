@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.api.load
-import com.cocos.develop.spacecos.MainActivity
 import com.cocos.develop.spacecos.R
-import com.cocos.develop.spacecos.databinding.MainFragmentBinding
+import com.cocos.develop.spacecos.databinding.FragmentMainBinding
 import com.cocos.develop.spacecos.domain.AppStates
+import com.cocos.develop.spacecos.ui.api.ApiActivity
 import com.cocos.develop.spacecos.ui.navigation.BottomNavigationDrawerFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -30,14 +30,14 @@ class MainFragment : Fragment() {
 
     //Ленивая инициализация модели
     private lateinit var viewModel: MainViewModel
-    private val binding: MainFragmentBinding by viewBinding(MainFragmentBinding::bind)
+    private val binding: FragmentMainBinding by viewBinding(FragmentMainBinding::bind)
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -138,6 +138,7 @@ class MainFragment : Fragment() {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
             }
+            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
     }

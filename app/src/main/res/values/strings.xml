@@ -11,6 +11,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="archive_menu">Archive</string>
     <string name="send_menu">send</string>
+
+    <string name="earth">earth</string>
+    <string name="mars">mars</string>
+    <string name="weather">weather</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="theme">Theme</string>
@@ -24,4 +28,5 @@
     <string name="attachment_summary_on">Space theme
     </string>
     <string name="attachment_summary_off">Default theme</string>
+    <string name="api_pages">Api pages</string>
 </resources>
