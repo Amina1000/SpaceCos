@@ -20,13 +20,5 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_mars" />
 
-    <ProgressBar
-        android:id="@+id/progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_top"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mars_list" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

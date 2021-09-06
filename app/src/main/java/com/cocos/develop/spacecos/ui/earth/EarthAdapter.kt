@@ -26,14 +26,12 @@ class EarthAdapter :
     private val IDENTIFIER = "Identifier: "
     private lateinit var binding: ItemEarthBinding
 
-    fun addItems(moviesList: ArrayList<EpicResponseData>) {
-        earthsList.addAll(moviesList)
+    fun addItems(epicList: ArrayList<EpicResponseData>) {
+        earthsList.addAll(epicList)
         notifyDataSetChanged()
     }
 
     fun clear() = earthsList.clear()
-
-    fun getData(): ArrayList<EpicResponseData> = earthsList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -65,12 +63,14 @@ class EarthAdapter :
                         date.text = it
                     }
 
-//                    earth.pathPicture?.let {
-//                        imageView.load(it) {
-//                            kotlin.error(R.drawable.ic_load_error_vector)
-//                            placeholder(R.drawable.bg_earth)
-//                        }
-//                    }
+                    earth.pathPicture?.let {
+                        imageView.load(it) {
+                            context
+                            error(R.drawable.ic_load_error_vector)
+                            placeholder(R.drawable.bg_earth)
+                        }
+                    }
+
                 }
             }
 

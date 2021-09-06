@@ -21,8 +21,9 @@ interface NasaApi {
     //Фото Марса
     @GET("mars-photos/api/v1/rovers/curiosity/photos")
     fun getMarsPicture(
-        @Query("api_key") apiKey: String,
-        @Query("earth_date") date: String): Call<MarsResponseData>
+        @Query("earth_date") date: String,
+        @Query("api_key") apiKey: String): Call<MarsResponseData>
+
 
     //Фото Земли
     @GET("EPIC/api/natural")

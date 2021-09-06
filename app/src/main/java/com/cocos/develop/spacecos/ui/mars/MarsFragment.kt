@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.MarsResponseData
@@ -21,6 +22,7 @@ class MarsFragment : Fragment() {
 
     private lateinit var viewModel: MarsViewModel
     private val binding: FragmentMarsBinding by viewBinding(FragmentMarsBinding::bind)
+    private val adapter by lazy { MarsAdapter() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +37,24 @@ class MarsFragment : Fragment() {
         viewModel.getMarsPicture().observe(viewLifecycleOwner) { renderData(it) }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRV()
+    }
+
+    private fun initRV() {
+        val recyclerMars: RecyclerView = binding.marsList
+        recyclerMars.adapter = adapter
+    }
+
     private fun renderData(data: AppStates) {
         when (data) {
             is AppStates.Success<*> -> {
                 val serverResponseData = data.serverResponseData as MarsResponseData
-                //TO DO
+                serverResponseData.let {
+                    adapter.clear()
+                    adapter.addItems(it)
+                }
             }
             is AppStates.Loading -> {
                 //showLoading()

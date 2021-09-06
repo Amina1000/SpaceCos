@@ -1,21 +1,18 @@
 package com.cocos.develop.spacecos.ui.earth
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.EpicResponseData
-import com.cocos.develop.spacecos.data.PodServerResponseData
 import com.cocos.develop.spacecos.databinding.FragmentEarthBinding
 import com.cocos.develop.spacecos.domain.AppStates
 import com.cocos.develop.spacecos.utils.toast
-import com.google.android.material.snackbar.Snackbar
 
 class EarthFragment : Fragment() {
 
@@ -54,7 +51,7 @@ class EarthFragment : Fragment() {
         when (data) {
             is AppStates.Success<*> -> {
                 val serverResponseData = data.serverResponseData as ArrayList<EpicResponseData>
-                serverResponseData?.let {
+                serverResponseData.let {
                     adapter.clear()
                     adapter.addItems(it)
                 }

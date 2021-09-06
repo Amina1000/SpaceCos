@@ -40,7 +40,7 @@ class PodRetrofit {
     }
 
     fun getMarsPicture(apiKey: String, date: String): Call<MarsResponseData> {
-        return nasaApi.getMarsPicture(apiKey, date)
+        return nasaApi.getMarsPicture(date,apiKey)
     }
 
     fun getEarthPicture(apiKey: String): Call<ArrayList<EpicResponseData>>{
