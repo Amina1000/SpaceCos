@@ -12,10 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.api.load
 import com.cocos.develop.spacecos.R
+import com.cocos.develop.spacecos.data.PodServerResponseData
 import com.cocos.develop.spacecos.databinding.FragmentMainBinding
 import com.cocos.develop.spacecos.domain.AppStates
 import com.cocos.develop.spacecos.ui.api.ApiActivity
 import com.cocos.develop.spacecos.ui.navigation.BottomNavigationDrawerFragment
+import com.cocos.develop.spacecos.utils.toast
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -93,8 +95,8 @@ class MainFragment : Fragment() {
 
     private fun renderData(data: AppStates) {
         when (data) {
-            is AppStates.Success -> {
-                val serverResponseData = data.serverResponseData
+            is AppStates.Success<*> -> {
+                val serverResponseData = data.serverResponseData as PodServerResponseData
                 serverResponseData.title?.let {
                     binding.bottomSheetLayout.bottomSheetDescriptionHeader.text = it
                 }
@@ -141,13 +143,6 @@ class MainFragment : Fragment() {
             R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-    private fun Fragment.toast(string: String?) {
-        Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
-            setGravity(Gravity.BOTTOM, 0, 250)
-            show()
-        }
     }
 
     interface Controller {

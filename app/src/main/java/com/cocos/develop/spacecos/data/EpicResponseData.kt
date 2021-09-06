@@ -26,5 +26,7 @@ data class EpicResponseData(
     val image: String?,
 
     @SerializedName("date")
-    val date: String?
+    val date: String?,
+
+    var pathPicture: String?
 )
