@@ -1,5 +1,7 @@
 package com.cocos.develop.spacecos.data.repository
 
+import com.cocos.develop.spacecos.data.EpicResponseData
+import com.cocos.develop.spacecos.data.MarsResponseData
 import com.cocos.develop.spacecos.data.PodServerResponseData
 import com.cocos.develop.spacecos.data.datasource.PodRetrofit
 import com.cocos.develop.spacecos.domain.Repository
@@ -17,5 +19,13 @@ class RepositoryImplementation : Repository {
 
     override fun getPictureOfTheDay(apiKey: String): Call<PodServerResponseData> {
         return retrofit.getPictureOfTheDay(apiKey)
+    }
+
+    override fun getMarsPicture(apiKey: String, date: String): Call<MarsResponseData> {
+        return retrofit.getMarsPicture(apiKey, date)
+    }
+
+    override fun getEarthPicture(apiKey: String): Call<ArrayList<EpicResponseData>> {
+        return retrofit.getEarthPicture(apiKey)
     }
 }

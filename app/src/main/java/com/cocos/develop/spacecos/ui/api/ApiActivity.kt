@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.datasource.FragmentFactoryApi
@@ -12,7 +11,6 @@ import com.cocos.develop.spacecos.databinding.ActivityApiBinding
 import com.cocos.develop.spacecos.ui.earth.EarthFragment
 import com.cocos.develop.spacecos.ui.main.MainActivity
 import com.cocos.develop.spacecos.ui.mars.MarsFragment
-import com.cocos.develop.spacecos.ui.settings.SettingsFragment
 import com.cocos.develop.spacecos.ui.weather.WeatherFragment
 import com.cocos.develop.spacecos.utils.getAppSettings
 import com.google.android.material.tabs.TabLayoutMediator

@@ -1,4 +1,6 @@
 package com.cocos.develop.spacecos.domain
+import com.cocos.develop.spacecos.data.EpicResponseData
+import com.cocos.develop.spacecos.data.MarsResponseData
 import com.cocos.develop.spacecos.data.PodServerResponseData
 import retrofit2.Call
 
@@ -10,4 +12,6 @@ import retrofit2.Call
  */
 interface Repository {
     fun getPictureOfTheDay(apiKey: String): Call<PodServerResponseData>
+    fun getMarsPicture(apiKey: String, date:String): Call<MarsResponseData>
+    fun getEarthPicture(apiKey: String):Call<ArrayList<EpicResponseData>>
 }
