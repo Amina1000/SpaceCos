@@ -37,7 +37,7 @@ class EarthViewModel : ViewModel() {
                     if (response.isSuccessful && serverResponse != null) {
                         checkResponse(serverResponse)
                         liveDataToObserveAppStates.postValue(
-                            AppStates.Success(response.body()!!)
+                            AppStates.Success(serverResponse)
                         )
                     } else {
                         val message = response.message()

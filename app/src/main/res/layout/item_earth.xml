@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                android:scaleType="centerCrop"
+                android:scaleType="centerInside"
                 app:srcCompat="@drawable/bg_earth" />
 
             <com.google.android.material.textview.MaterialTextView

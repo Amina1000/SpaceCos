@@ -14,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class MarsViewModel : ViewModel() {
-    private val mainRepositoryImpl: Repository by lazy{ RepositoryImplementation() }
+    private val mainRepositoryImpl: Repository by lazy { RepositoryImplementation() }
     private val liveDataToObserveAppStates: MutableLiveData<AppStates> = MutableLiveData()
 
     fun getMarsPicture(): LiveData<AppStates> {
@@ -34,10 +34,13 @@ class MarsViewModel : ViewModel() {
                     call: Call<MarsResponseData>,
                     response: Response<MarsResponseData>
                 ) {
-                    if (response.isSuccessful && response.body() != null) {
-                        liveDataToObserveAppStates.postValue(
-                            AppStates.Success(response.body()!!)
-                        )
+                    if (response.isSuccessful && response.body()!=null) {
+                        response.body()?.let {
+                            liveDataToObserveAppStates.postValue(
+                                AppStates.Success(it)
+                            )
+                        }
+
                     } else {
                         val message = response.message()
                         if (message.isNullOrEmpty()) {
