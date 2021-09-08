@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card"
@@ -20,7 +20,6 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view"
-                android:layout_margin="@dimen/image_margin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/photo_of_the_day_stub"

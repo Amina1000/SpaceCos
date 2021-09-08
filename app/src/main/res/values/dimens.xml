@@ -11,4 +11,6 @@
     <dimen name="padding_layout">10dp</dimen>
     <dimen name="image_margin">8dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="wiki_margin_icon_end">8dp</dimen>
+    <dimen name="wiki_margin_icon_bottom">10dp</dimen>
 </resources>
