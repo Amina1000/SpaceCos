@@ -16,15 +16,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/image_view"
-                android:layout_margin="@dimen/image_margin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                android:scaleType="centerInside"
+                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/bg_earth" />
 
             <com.google.android.material.textview.MaterialTextView

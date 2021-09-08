@@ -10,4 +10,5 @@
     <dimen name="card_elevation">8dp</dimen>
     <dimen name="padding_layout">10dp</dimen>
     <dimen name="image_margin">8dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
 </resources>
