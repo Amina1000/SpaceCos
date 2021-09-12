@@ -1,6 +1,5 @@
 package com.cocos.develop.spacecos.ui.mars
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,8 @@ import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.MarsEntity
 import com.cocos.develop.spacecos.data.MarsResponseData
 import com.cocos.develop.spacecos.databinding.ItemMarsBinding
+import com.cocos.develop.spacecos.utils.picScaleAnimation
 
-/****
-Project Nasa Photo Day
-Package softing.ubah4ukdev.nasaphotoday.ui.pictureearth
-
-Created by Ivan Sheynmaer
-
-2021.07.12
-v1.0
- */
 class MarsAdapter :
     RecyclerView.Adapter<MarsAdapter.ViewHolder?>() {
 
@@ -51,6 +42,7 @@ class MarsAdapter :
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
         fun bind(mars: MarsEntity) {
+            var isExpanded = false
             with(binding) {
                 itemView.apply {
 
@@ -68,6 +60,10 @@ class MarsAdapter :
                         itemView.context
                         error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.bg_mars)
+                    }
+                    imageView.setOnClickListener {
+                        isExpanded = !isExpanded
+                        imageView.picScaleAnimation(isExpanded,binding.marsContainer)
                     }
                 }
 

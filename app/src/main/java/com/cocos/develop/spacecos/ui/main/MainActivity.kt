@@ -3,7 +3,6 @@ package com.cocos.develop.spacecos.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceManager
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.ui.settings.SettingsFragment
 import com.cocos.develop.spacecos.utils.getAppSettings

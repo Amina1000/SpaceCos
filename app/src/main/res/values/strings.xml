@@ -12,6 +12,8 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="archive_menu">Archive</string>
     <string name="send_menu">send</string>
+    <string name="api_key_error">You need API key</string>
+    <string name="unidentified_error">Unidentified error</string>
 
     <string name="earth">earth</string>
     <string name="mars">mars</string>

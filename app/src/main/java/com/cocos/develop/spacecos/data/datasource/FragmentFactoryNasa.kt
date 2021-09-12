@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
  * @author Amina
  * 05.09.2021
  */
-class FragmentFactoryApi(
+class FragmentFactoryNasa(
     val title: String,
     val iconResId: Int,
     val badgeNumber: Int?=null,

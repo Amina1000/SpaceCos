@@ -1,4 +1,4 @@
-package com.cocos.develop.spacecos.ui.api
+package com.cocos.develop.spacecos.ui.nasa
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.cocos.develop.spacecos.R
-import com.cocos.develop.spacecos.data.datasource.FragmentFactoryApi
+import com.cocos.develop.spacecos.data.datasource.FragmentFactoryNasa
 import com.cocos.develop.spacecos.databinding.ActivityApiBinding
 import com.cocos.develop.spacecos.ui.earth.EarthFragment
 import com.cocos.develop.spacecos.ui.main.MainActivity
@@ -21,7 +21,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @author Amina
  * 04.09.2021
  */
-class ApiActivity : AppCompatActivity() {
+class NasaActivity : AppCompatActivity() {
 
     private val binding by viewBinding(ActivityApiBinding::bind)
     private val fragments by lazy { listFragments() }
@@ -46,11 +46,11 @@ class ApiActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.bottom_view_home -> {
-                    startActivity(Intent(this@ApiActivity, MainActivity::class.java))
+                    startActivity(Intent(this@NasaActivity, MainActivity::class.java))
                     true
                 }
                 R.id.bottom_view_favorite -> {
-                    Toast.makeText(this@ApiActivity, getString(R.string.favourite), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@NasaActivity, getString(R.string.favourite), Toast.LENGTH_SHORT).show()
                     true
                 }
                 else -> false
@@ -61,7 +61,7 @@ class ApiActivity : AppCompatActivity() {
 
     private fun initViewPage() {
         with(binding.viewPager) {
-            adapter = ViewPagerAdapter(this@ApiActivity, fragments)
+            adapter = ViewPagerAdapter(this@NasaActivity, fragments)
         }
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, pos ->
             fragments[pos].let {
@@ -75,15 +75,15 @@ class ApiActivity : AppCompatActivity() {
     }
 
     private fun listFragments() = listOf(
-        FragmentFactoryApi(
+        FragmentFactoryNasa(
             getString(R.string.earth),
             R.drawable.ic_earth
         ) { EarthFragment.newInstance() },
-        FragmentFactoryApi(
+        FragmentFactoryNasa(
             getString(R.string.mars),
             R.drawable.ic_mars
         ) { MarsFragment.newInstance() },
-        FragmentFactoryApi(
+        FragmentFactoryNasa(
             getString(R.string.weather),
             R.drawable.ic_system
         ) { WeatherFragment.newInstance() }

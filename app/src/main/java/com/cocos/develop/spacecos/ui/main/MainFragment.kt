@@ -15,11 +15,13 @@ import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.PodServerResponseData
 import com.cocos.develop.spacecos.databinding.FragmentMainBinding
 import com.cocos.develop.spacecos.domain.AppStates
-import com.cocos.develop.spacecos.ui.api.ApiActivity
+import com.cocos.develop.spacecos.ui.nasa.NasaActivity
 import com.cocos.develop.spacecos.ui.navigation.BottomNavigationDrawerFragment
+import com.cocos.develop.spacecos.utils.picScaleAnimation
 import com.cocos.develop.spacecos.utils.toast
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import kotlinx.android.synthetic.main.main_activity.*
 
 private const val WIKI_URL = "https://en.wikipedia.org/wiki/"
 
@@ -34,6 +36,7 @@ class MainFragment : Fragment() {
     private lateinit var viewModel: MainViewModel
     private val binding: FragmentMainBinding by viewBinding(FragmentMainBinding::bind)
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+    private var isExpanded = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,6 +57,10 @@ class MainFragment : Fragment() {
                 data =
                     Uri.parse(WIKI_URL + binding.inputEditText.text.toString())
             })
+        }
+        binding.imageView.setOnClickListener {
+            isExpanded = !isExpanded
+            binding.imageView.picScaleAnimation(isExpanded, binding.main)
         }
 
         bottomSheetBehavior =
@@ -140,7 +147,7 @@ class MainFragment : Fragment() {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
             }
-            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
+            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, NasaActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
     }
