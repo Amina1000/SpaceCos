@@ -1,6 +1,5 @@
 package com.cocos.develop.spacecos.ui.earth
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,16 +8,9 @@ import coil.api.load
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.EpicResponseData
 import com.cocos.develop.spacecos.databinding.ItemEarthBinding
+import com.cocos.develop.spacecos.utils.picScaleAnimation
 
-/****
-Project Nasa Photo Day
-Package softing.ubah4ukdev.nasaphotoday.ui.pictureearth
 
-Created by Ivan Sheynmaer
-
-2021.07.12
-v1.0
- */
 class EarthAdapter :
     RecyclerView.Adapter<EarthAdapter.ViewHolder?>() {
 
@@ -48,7 +40,9 @@ class EarthAdapter :
     inner class ViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
+
         fun bind(earth: EpicResponseData) {
+            var isExpanded = false
             with(binding) {
                 itemView.apply {
                     earth.caption?.let {
@@ -69,6 +63,11 @@ class EarthAdapter :
                             error(R.drawable.ic_load_error_vector)
                             placeholder(R.drawable.bg_earth)
                         }
+                        imageView.setOnClickListener {
+                            isExpanded = !isExpanded
+                            imageView.picScaleAnimation(isExpanded,binding.earthContainer)
+                        }
+
                     }
 
                 }

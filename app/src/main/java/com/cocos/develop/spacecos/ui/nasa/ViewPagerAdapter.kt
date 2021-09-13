@@ -1,9 +1,9 @@
-package com.cocos.develop.spacecos.ui.api
+package com.cocos.develop.spacecos.ui.nasa
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.cocos.develop.spacecos.data.datasource.FragmentFactoryApi
+import com.cocos.develop.spacecos.data.datasource.FragmentFactoryNasa
 
 /**
  * homework com.cocos.develop.spacecos.ui.api
@@ -13,7 +13,7 @@ import com.cocos.develop.spacecos.data.datasource.FragmentFactoryApi
  */
 
 class ViewPagerAdapter(fragmentActivity: FragmentActivity,
-                       private val fragments: List<FragmentFactoryApi> = emptyList()) :
+                       private val fragments: List<FragmentFactoryNasa> = emptyList()) :
     FragmentStateAdapter(fragmentActivity) {
 
     override fun getItemCount(): Int = fragments.size

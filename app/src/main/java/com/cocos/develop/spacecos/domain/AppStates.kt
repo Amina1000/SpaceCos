@@ -1,6 +1,5 @@
 package com.cocos.develop.spacecos.domain
 
-import com.cocos.develop.spacecos.data.PodServerResponseData
 
 /**
  * homework com.cocos.develop.spacecos.domain
