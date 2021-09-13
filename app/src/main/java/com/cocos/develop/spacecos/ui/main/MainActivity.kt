@@ -4,17 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.cocos.develop.spacecos.R
+import com.cocos.develop.spacecos.ui.common.Controller
 import com.cocos.develop.spacecos.ui.settings.SettingsFragment
+import com.cocos.develop.spacecos.ui.start.StartFragment
 import com.cocos.develop.spacecos.utils.getAppSettings
 
-class MainActivity : AppCompatActivity(), MainFragment.Controller {
+class MainActivity : AppCompatActivity(), Controller {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setAppSettings()
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
-            loadFragment(MainFragment.newInstance())
+            loadFragment(StartFragment())
         }
     }
 
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity(), MainFragment.Controller {
         transaction.commit()
     }
 
-    override fun openSettingsScreen() {
-        loadFragment(SettingsFragment())
+    override fun openSettingsScreen(fragment: Fragment) {
+        loadFragment(fragment)
     }
 }

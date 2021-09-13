@@ -8,9 +8,15 @@
     <dimen name="margin_top">5dp</dimen>
     <dimen name="view_corner">10dp</dimen>
     <dimen name="card_elevation">8dp</dimen>
+    <item name="percent_height" format="float" type="dimen">0.2</item>
+    <item name="percent_width" format="float" type="dimen">0.35</item>
+    <item name="button_alpha_one" format="integer" type="dimen">1</item>
+    <item name="button_alpha_zero" format="integer" type="dimen">0</item>
     <dimen name="padding_layout">10dp</dimen>
     <dimen name="image_margin">8dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="wiki_margin_icon_end">8dp</dimen>
     <dimen name="wiki_margin_icon_bottom">10dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="start_btn_padding">20dp</dimen>
 </resources>

@@ -15,8 +15,10 @@ import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.PodServerResponseData
 import com.cocos.develop.spacecos.databinding.FragmentMainBinding
 import com.cocos.develop.spacecos.domain.AppStates
+import com.cocos.develop.spacecos.ui.common.Controller
 import com.cocos.develop.spacecos.ui.nasa.NasaActivity
 import com.cocos.develop.spacecos.ui.navigation.BottomNavigationDrawerFragment
+import com.cocos.develop.spacecos.ui.settings.SettingsFragment
 import com.cocos.develop.spacecos.utils.picScaleAnimation
 import com.cocos.develop.spacecos.utils.toast
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -141,7 +143,7 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> Toast.makeText(context, getString(R.string.favourite), Toast.LENGTH_SHORT).show()
-            R.id.app_bar_settings -> (requireActivity() as Controller).openSettingsScreen()
+            R.id.app_bar_settings -> (requireActivity() as Controller).openSettingsScreen(SettingsFragment())
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
@@ -152,7 +154,4 @@ class MainFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    interface Controller {
-        fun openSettingsScreen()
-    }
 }
