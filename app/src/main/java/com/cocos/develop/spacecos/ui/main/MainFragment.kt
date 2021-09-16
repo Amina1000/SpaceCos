@@ -24,6 +24,7 @@ class MainFragment : Fragment() {
     companion object {
         fun newInstance() = MainFragment()
         private var isMain = true
+        private val wikiUrl = "https://en.wikipedia.org/wiki/"
     }
 
     //Ленивая инициализация модели
@@ -48,7 +49,7 @@ class MainFragment : Fragment() {
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data =
-                    Uri.parse("https://en.wikipedia.org/wiki/${binding.inputEditText.text.toString()}")
+                    Uri.parse(wikiUrl +binding.inputEditText.text.toString())
             })
         }
 
@@ -130,7 +131,7 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
-            R.id.app_bar_settings -> Toast.makeText(context, "Search", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_settings -> (requireActivity() as Controller).openSettingsScreen()
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
@@ -145,5 +146,9 @@ class MainFragment : Fragment() {
             setGravity(Gravity.BOTTOM, 0, 250)
             show()
         }
+    }
+
+    interface Controller {
+        fun openSettingsScreen();
     }
 }

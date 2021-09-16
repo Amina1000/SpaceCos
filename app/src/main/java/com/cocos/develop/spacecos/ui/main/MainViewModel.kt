@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.cocos.develop.spacecos.BuildConfig
-import com.cocos.develop.spacecos.data.PODServerResponseData
-import com.cocos.develop.spacecos.data.datasource.PODRetrofitImpl
+import com.cocos.develop.spacecos.data.PodServerResponseData
+import com.cocos.develop.spacecos.data.datasource.PodRetrofit
 import com.cocos.develop.spacecos.domain.AppStates
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,7 +13,7 @@ import retrofit2.Response
 
 class MainViewModel(
     private val liveDataToObserveAppStates: MutableLiveData<AppStates> = MutableLiveData(),
-    private val retrofitImpl: PODRetrofitImpl = PODRetrofitImpl()
+    private val retrofit: PodRetrofit = PodRetrofit()
     ) :
     ViewModel() {
 
@@ -28,11 +28,11 @@ class MainViewModel(
             if (apiKey.isBlank()) {
                 liveDataToObserveAppStates.postValue(AppStates.Error(Throwable("You need API key")))
             } else {
-                retrofitImpl.getRetrofitImpl().getPictureOfTheDay(apiKey).enqueue(object :
-                    Callback<PODServerResponseData> {
+                retrofit.getPictureOfTheDay(apiKey).enqueue(object :
+                    Callback<PodServerResponseData> {
                     override fun onResponse(
-                        call: Call<PODServerResponseData>,
-                        response: Response<PODServerResponseData>
+                        call: Call<PodServerResponseData>,
+                        response: Response<PodServerResponseData>
                     ) {
                         if (response.isSuccessful && response.body() != null) {
                             liveDataToObserveAppStates.postValue(
@@ -49,7 +49,7 @@ class MainViewModel(
                         }
                     }
 
-                    override fun onFailure(call: Call<PODServerResponseData>, t: Throwable) {
+                    override fun onFailure(call: Call<PodServerResponseData>, t: Throwable) {
                         liveDataToObserveAppStates.postValue(AppStates.Error(t))
                     }
                 })

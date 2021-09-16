@@ -2,4 +2,12 @@
 <resources>
     <dimen name="radius">10dp</dimen>
     <dimen name="peekHeight">250dp</dimen>
+    <dimen name="padding_text">10dp</dimen>
+    <dimen name="width_view_sheet">25dp</dimen>
+    <dimen name="height_view_sheet">1dp</dimen>
+    <dimen name="margin_top">5dp</dimen>
+    <dimen name="view_corner">10dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="padding_layout">10dp</dimen>
+    <dimen name="image_margin">8dp</dimen>
 </resources>
