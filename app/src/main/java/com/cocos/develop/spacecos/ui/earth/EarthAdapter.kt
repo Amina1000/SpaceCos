@@ -7,16 +7,14 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.EpicResponseData
-import com.cocos.develop.spacecos.databinding.ItemEarthBinding
 import com.cocos.develop.spacecos.utils.picScaleAnimation
-
+import kotlinx.android.synthetic.main.item_earth.view.*
 
 class EarthAdapter :
     RecyclerView.Adapter<EarthAdapter.ViewHolder?>() {
 
     private val earthsList = ArrayList<EpicResponseData>()
     private val IDENTIFIER = "Identifier: "
-    private lateinit var binding: ItemEarthBinding
 
     fun addItems(epicList: ArrayList<EpicResponseData>) {
         earthsList.addAll(epicList)
@@ -26,9 +24,8 @@ class EarthAdapter :
     fun clear() = earthsList.clear()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        binding = ItemEarthBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding.root as View)
+        return ViewHolder(LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_earth, parent, false) as View)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -43,7 +40,7 @@ class EarthAdapter :
 
         fun bind(earth: EpicResponseData) {
             var isExpanded = false
-            with(binding) {
+
                 itemView.apply {
                     earth.caption?.let {
                         caption.text = it
@@ -58,17 +55,15 @@ class EarthAdapter :
                     }
 
                     earth.pathPicture?.let {
-                        imageView.load(it) {
+                        image_view.load(it) {
                             context
                             error(R.drawable.ic_load_error_vector)
                             placeholder(R.drawable.bg_earth)
                         }
-                        imageView.setOnClickListener {
+                        image_view.setOnClickListener {
                             isExpanded = !isExpanded
-                            imageView.picScaleAnimation(isExpanded,binding.earthContainer)
+                            image_view.picScaleAnimation(isExpanded,earth_container)
                         }
-
-                    }
 
                 }
             }

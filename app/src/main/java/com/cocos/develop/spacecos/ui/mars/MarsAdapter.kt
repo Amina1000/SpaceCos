@@ -8,14 +8,13 @@ import coil.api.load
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.MarsEntity
 import com.cocos.develop.spacecos.data.MarsResponseData
-import com.cocos.develop.spacecos.databinding.ItemMarsBinding
 import com.cocos.develop.spacecos.utils.picScaleAnimation
+import kotlinx.android.synthetic.main.item_mars.view.*
 
 class MarsAdapter :
     RecyclerView.Adapter<MarsAdapter.ViewHolder?>() {
 
     private val marsList = ArrayList<MarsEntity>()
-    private lateinit var binding: ItemMarsBinding
 
     fun addItems(marsResponseData: MarsResponseData) {
         marsResponseData.photoList?.let {
@@ -27,9 +26,10 @@ class MarsAdapter :
     fun clear() = marsList.clear()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        binding = ItemMarsBinding.inflate(layoutInflater, parent, false)
-        return ViewHolder(binding.root as View)
+        return ViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_mars, parent, false) as View
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -43,31 +43,29 @@ class MarsAdapter :
     ) : RecyclerView.ViewHolder(itemView) {
         fun bind(mars: MarsEntity) {
             var isExpanded = false
-            with(binding) {
-                itemView.apply {
 
-                    mars.sol?.let {
-                        sol.text = it.toString()
-                    }
+            itemView.apply {
+
+                mars.sol?.let {
+                    sol.text = it.toString()
                 }
 
                 mars.date?.let {
                     date.text = it
                 }
-
                 mars.image?.let {
-                    imageView.load(it) {
+                    image_view.load(it) {
                         itemView.context
-                        error(R.drawable.ic_load_error_vector)
+                        kotlin.error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.bg_mars)
                     }
-                    imageView.setOnClickListener {
+                    image_view.setOnClickListener {
                         isExpanded = !isExpanded
-                        imageView.picScaleAnimation(isExpanded,binding.marsContainer)
+                        image_view.picScaleAnimation(isExpanded, mars_container)
                     }
                 }
-
             }
+
         }
 
     }
