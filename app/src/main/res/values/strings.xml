@@ -129,5 +129,10 @@
     <string name="settings_title">settings</string>
     <string name="nasa_title">nasa library</string>
     <string name="main_screen_title">main screen</string>
+    <string name="link">view link</string>
+    <string name="activity_id">activityID:</string>
+    <string name="start_time">startTime:</string>
+    <string name="note_title">note:</string>
+    <string name="note_example">The CME was barely visible due to intense noise from SEPs in the images</string>
 
 </resources>

@@ -1,6 +1,5 @@
 package com.cocos.develop.spacecos.ui.earth
 
-import android.app.Application
 import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -18,6 +17,7 @@ import retrofit2.Response
 private const val EPIC_PIC_URL =  "https://api.nasa.gov/EPIC/archive/natural/"
 
 class EarthViewModel : ViewModel() {
+
     private val mainRepository: Repository by lazy { RepositoryImplementation() }
     private val liveDataToObserveAppStates: MutableLiveData<AppStates> = MutableLiveData()
     private val resources = Resources.getSystem()
@@ -69,7 +69,7 @@ class EarthViewModel : ViewModel() {
     private fun checkResponse(serverResponse: ArrayList<EpicResponseData>?) {
 
         serverResponse?.forEach {
-            var dateRequest: String = ""
+            var dateRequest = ""
             it.date?.let { date ->
                 dateRequest =
                     date.substring(0, 10).replace("-", "/")

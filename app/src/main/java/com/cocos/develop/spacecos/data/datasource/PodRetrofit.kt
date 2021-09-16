@@ -1,10 +1,9 @@
 package com.cocos.develop.spacecos.data.datasource
 
-import com.cocos.develop.spacecos.BuildConfig
+import com.cocos.develop.spacecos.data.DonkiCmeResponseData
 import com.cocos.develop.spacecos.data.EpicResponseData
 import com.cocos.develop.spacecos.data.MarsResponseData
 import com.cocos.develop.spacecos.data.PodServerResponseData
-import com.cocos.develop.spacecos.domain.Repository
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -46,6 +45,11 @@ class PodRetrofit {
     fun getEarthPicture(apiKey: String): Call<ArrayList<EpicResponseData>>{
         return nasaApi.getEarthPicture(apiKey)
     }
+
+    fun getWeatherCme(apiKey: String, startDate: String, endDate: String): Call<ArrayList<DonkiCmeResponseData>>{
+        return nasaApi.getDonkiCme(startDate, endDate, apiKey)
+    }
+
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(interceptor)

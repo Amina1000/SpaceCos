@@ -1,5 +1,6 @@
 package com.cocos.develop.spacecos.data.repository
 
+import com.cocos.develop.spacecos.data.DonkiCmeResponseData
 import com.cocos.develop.spacecos.data.EpicResponseData
 import com.cocos.develop.spacecos.data.MarsResponseData
 import com.cocos.develop.spacecos.data.PodServerResponseData
@@ -27,5 +28,13 @@ class RepositoryImplementation : Repository {
 
     override fun getEarthPicture(apiKey: String): Call<ArrayList<EpicResponseData>> {
         return retrofit.getEarthPicture(apiKey)
+    }
+
+    override fun getWeatherCme(
+        apiKey: String,
+        startDate: String,
+        endDate: String
+    ): Call<ArrayList<DonkiCmeResponseData>> {
+        return  retrofit.getWeatherCme(apiKey,startDate,endDate)
     }
 }

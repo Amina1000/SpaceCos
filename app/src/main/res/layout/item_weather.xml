@@ -1,0 +1,119 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/margin_top"
+    android:backgroundTint="?themeColorPrimary"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="@dimen/card_elevation"
+    app:rippleColor="@color/color_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:columnCount="2"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/link"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="?textColorPrimary"
+                android:textSize="@dimen/text_size_note"
+                android:textStyle="bold" />
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/link"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:background="@color/white"
+                android:clickable="true"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                tools:text="@string/link" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_time"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="?textColorPrimary"
+                android:textSize="@dimen/text_size_note"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_text_start"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="?textColorPrimary"
+                android:textSize="@dimen/text_size_note"
+                tools:text="@string/start_time" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="@string/activity_id"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="?textColorPrimary"
+                android:textSize="@dimen/text_size_note" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/activityID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="?textColorPrimary"
+                tools:text="@string/activity_id"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_top"
+                android:text="@string/note_title"
+                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="?textColorPrimary"
+                android:textSize="@dimen/text_size_note" />
+
+        </GridLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/note_layout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_text_bottom"
+            app:boxBackgroundColor="?themeColorOnPrimary"
+            app:boxCornerRadiusBottomStart="@dimen/radius"
+            app:boxCornerRadiusTopEnd="@dimen/radius"
+            app:counterEnabled="true"
+            app:endIconMode="custom">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/note"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="@string/note_example"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>
