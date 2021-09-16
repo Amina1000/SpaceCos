@@ -9,7 +9,7 @@ import com.cocos.develop.spacecos.data.PodServerResponseData
  * 27.08.2021
  */
 sealed class AppStates {
-    data class Success(val serverResponseData: PodServerResponseData) : AppStates()
+    data class Success<T>(val serverResponseData: T) : AppStates()
     data class Error(val error: Throwable) : AppStates()
     data class Loading(val progress: Int?) : AppStates()
 }

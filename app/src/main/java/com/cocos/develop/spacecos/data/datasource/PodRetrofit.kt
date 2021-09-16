@@ -1,7 +1,10 @@
 package com.cocos.develop.spacecos.data.datasource
 
 import com.cocos.develop.spacecos.BuildConfig
+import com.cocos.develop.spacecos.data.EpicResponseData
+import com.cocos.develop.spacecos.data.MarsResponseData
 import com.cocos.develop.spacecos.data.PodServerResponseData
+import com.cocos.develop.spacecos.domain.Repository
 import com.google.gson.GsonBuilder
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -29,12 +32,20 @@ class PodRetrofit {
             )
         )
         .client(createOkHttpClient(PodInterceptor()))
-        .build().create(NasaApi::class.java)
+        .build()
+        .create(NasaApi::class.java)
 
     fun getPictureOfTheDay(apiKey: String): Call<PodServerResponseData> {
        return nasaApi.getPictureOfTheDay(apiKey)
     }
 
+    fun getMarsPicture(apiKey: String, date: String): Call<MarsResponseData> {
+        return nasaApi.getMarsPicture(date,apiKey)
+    }
+
+    fun getEarthPicture(apiKey: String): Call<ArrayList<EpicResponseData>>{
+        return nasaApi.getEarthPicture(apiKey)
+    }
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(interceptor)

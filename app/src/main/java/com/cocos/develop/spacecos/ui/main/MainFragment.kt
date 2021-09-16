@@ -11,32 +11,35 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.api.load
-import com.cocos.develop.spacecos.MainActivity
 import com.cocos.develop.spacecos.R
-import com.cocos.develop.spacecos.databinding.MainFragmentBinding
+import com.cocos.develop.spacecos.data.PodServerResponseData
+import com.cocos.develop.spacecos.databinding.FragmentMainBinding
 import com.cocos.develop.spacecos.domain.AppStates
+import com.cocos.develop.spacecos.ui.api.ApiActivity
 import com.cocos.develop.spacecos.ui.navigation.BottomNavigationDrawerFragment
+import com.cocos.develop.spacecos.utils.toast
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+
+private const val WIKI_URL = "https://en.wikipedia.org/wiki/"
 
 class MainFragment : Fragment() {
 
     companion object {
         fun newInstance() = MainFragment()
         private var isMain = true
-        private val wikiUrl = "https://en.wikipedia.org/wiki/"
     }
 
     //Ленивая инициализация модели
     private lateinit var viewModel: MainViewModel
-    private val binding: MainFragmentBinding by viewBinding(MainFragmentBinding::bind)
+    private val binding: FragmentMainBinding by viewBinding(FragmentMainBinding::bind)
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.main_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_main, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,7 +52,7 @@ class MainFragment : Fragment() {
         binding.inputLayout.setEndIconOnClickListener {
             startActivity(Intent(Intent.ACTION_VIEW).apply {
                 data =
-                    Uri.parse(wikiUrl +binding.inputEditText.text.toString())
+                    Uri.parse(WIKI_URL + binding.inputEditText.text.toString())
             })
         }
 
@@ -87,13 +90,13 @@ class MainFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getData().observe(viewLifecycleOwner) { renderData(it) }
+        viewModel.getPictureOfTheDay().observe(viewLifecycleOwner) { renderData(it) }
     }
 
     private fun renderData(data: AppStates) {
         when (data) {
-            is AppStates.Success -> {
-                val serverResponseData = data.serverResponseData
+            is AppStates.Success<*> -> {
+                val serverResponseData = data.serverResponseData as PodServerResponseData
                 serverResponseData.title?.let {
                     binding.bottomSheetLayout.bottomSheetDescriptionHeader.text = it
                 }
@@ -130,25 +133,19 @@ class MainFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_fav -> Toast.makeText(context, "Favourite", Toast.LENGTH_SHORT).show()
+            R.id.app_bar_fav -> Toast.makeText(context, getString(R.string.favourite), Toast.LENGTH_SHORT).show()
             R.id.app_bar_settings -> (requireActivity() as Controller).openSettingsScreen()
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
             }
+            R.id.app_bar_api -> activity?.let { startActivity(Intent(it, ApiActivity::class.java)) }
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun Fragment.toast(string: String?) {
-        Toast.makeText(context, string, Toast.LENGTH_SHORT).apply {
-            setGravity(Gravity.BOTTOM, 0, 250)
-            show()
-        }
-    }
-
     interface Controller {
-        fun openSettingsScreen();
+        fun openSettingsScreen()
     }
 }
