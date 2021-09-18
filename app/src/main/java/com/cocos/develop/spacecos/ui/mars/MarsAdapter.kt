@@ -15,7 +15,9 @@ class MarsAdapter :
     RecyclerView.Adapter<MarsAdapter.ViewHolder?>() {
 
     private val marsList = ArrayList<MarsEntity>()
-    private lateinit var binding: ItemMarsBinding
+    private var _binding: ItemMarsBinding? =null
+    private val binding
+        get() = _binding!!
 
     fun addItems(marsResponseData: MarsResponseData) {
         marsResponseData.photoList?.let {
@@ -28,7 +30,7 @@ class MarsAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        binding = ItemMarsBinding.inflate(layoutInflater, parent, false)
+        _binding = ItemMarsBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding.root as View)
     }
 

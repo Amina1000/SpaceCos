@@ -19,4 +19,7 @@
     <dimen name="wiki_margin_icon_bottom">10dp</dimen>
     <dimen name="text_margin">16dp</dimen>
     <dimen name="start_btn_padding">20dp</dimen>
+    <dimen name="margin_text_start">5dp</dimen>
+    <dimen name="margin_text_bottom">10dp</dimen>
+    <dimen name="text_size_note">18sp</dimen>
 </resources>

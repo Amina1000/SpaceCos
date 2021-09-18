@@ -16,7 +16,10 @@ class EarthAdapter :
 
     private val earthsList = ArrayList<EpicResponseData>()
     private val IDENTIFIER = "Identifier: "
-    private lateinit var binding: ItemEarthBinding
+    private var _binding: ItemEarthBinding? = null
+
+    private val binding
+        get() = _binding!!
 
     fun addItems(epicList: ArrayList<EpicResponseData>) {
         earthsList.addAll(epicList)
@@ -27,7 +30,7 @@ class EarthAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        binding = ItemEarthBinding.inflate(layoutInflater, parent, false)
+        _binding = ItemEarthBinding.inflate(layoutInflater, parent, false)
         return ViewHolder(binding.root as View)
     }
 
@@ -75,4 +78,5 @@ class EarthAdapter :
 
         }
     }
+
 }

@@ -62,7 +62,7 @@ class MainFragment : Fragment() {
         }
         binding.imageView.setOnClickListener {
             isExpanded = !isExpanded
-            binding.imageView.picScaleAnimation(isExpanded, binding.main)
+            binding.imageView.picScaleAnimation(isExpanded, binding.apodMotion)
         }
 
         bottomSheetBehavior =

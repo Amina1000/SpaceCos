@@ -4,12 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/main"
+            android:id="@+id/apod_motion"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="@dimen/padding_layout"
@@ -39,7 +35,6 @@
                 app:endIconCheckable="true"
                 app:endIconDrawable="@drawable/ic_wikipedia"
                 app:endIconMode="custom"
-                app:layout_constraintBottom_toTopOf="@+id/card"
                 app:layout_constraintStart_toEndOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -54,10 +49,9 @@
                 android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/input_layout"
                 app:cardBackgroundColor="?themeColorOnPrimary">
 
                 <com.cocos.develop.spacecos.utils.EquilateralImageView
@@ -72,8 +66,6 @@
             </com.google.android.material.card.MaterialCardView>
 
         </androidx.constraintlayout.motion.widget.MotionLayout>
-
-    </androidx.core.widget.NestedScrollView>
 
     <include
         android:id="@+id/bottom_sheet_layout"
