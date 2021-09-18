@@ -1,5 +1,6 @@
 package com.cocos.develop.spacecos.ui.weather
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.DonkiCmeResponseData
 import com.cocos.develop.spacecos.data.NoteType
+import com.cocos.develop.spacecos.ui.common.ItemTouchHelperAdapter
+import com.cocos.develop.spacecos.ui.common.ItemTouchHelperViewHolder
 import kotlinx.android.synthetic.main.item_link.view.*
 import kotlinx.android.synthetic.main.item_weather.view.*
 
@@ -14,7 +17,7 @@ private const val TYPE_NOTE = 0
 private const val TYPE_LINK = 1
 
 class WeatherAdapter :
-    RecyclerView.Adapter<WeatherAdapter.BaseViewHolder?>() {
+    RecyclerView.Adapter<WeatherAdapter.BaseViewHolder?>(), ItemTouchHelperAdapter {
 
     private val donkiList = ArrayList<Pair<NoteType, DonkiCmeResponseData>>()
 
@@ -66,7 +69,7 @@ class WeatherAdapter :
 
     inner class NoteViewHolder(
         itemView: View
-    ) : BaseViewHolder(itemView) {
+    ) : BaseViewHolder(itemView){
 
         override fun bind(donki: Pair<NoteType, DonkiCmeResponseData>) {
 
@@ -101,6 +104,7 @@ class WeatherAdapter :
             }
         }
 
+
         private fun moveDown() {
             layoutPosition.takeIf { it < donkiList.size - 1 }?.also { currentPosition ->
                 donkiList.removeAt(currentPosition).apply {
@@ -114,7 +118,7 @@ class WeatherAdapter :
 
     inner class LinkViewHolder(
         itemView: View
-    ) : BaseViewHolder(itemView) {
+    ) : BaseViewHolder(itemView),ItemTouchHelperViewHolder {
 
         override fun bind(donki: Pair<NoteType, DonkiCmeResponseData>) {
             itemView.apply {
@@ -123,9 +127,29 @@ class WeatherAdapter :
                 }
             }
         }
+
+        override fun onItemSelected() {
+            itemView.setBackgroundColor(Color.LTGRAY)
+        }
+
+        override fun onItemClear() {
+            itemView.setBackgroundColor(0)
+        }
     }
 
     abstract inner class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         abstract fun bind(donki: Pair<NoteType, DonkiCmeResponseData>)
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosition: Int) {
+        donkiList.removeAt(fromPosition).apply {
+            donkiList.add(if (toPosition > fromPosition) toPosition - 1 else toPosition, this)
+        }
+        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    override fun onItemDismiss(position: Int) {
+        donkiList.removeAt(position)
+        notifyItemRemoved(position)
     }
 }

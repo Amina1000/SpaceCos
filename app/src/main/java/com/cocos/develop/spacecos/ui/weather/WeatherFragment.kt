@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.cocos.develop.spacecos.R
@@ -42,8 +43,10 @@ class WeatherFragment : Fragment() {
     }
 
     private fun initRV() {
-        val recyclerMars: RecyclerView = binding.donkiList
-        recyclerMars.adapter = adapter
+        val recyclerWeather: RecyclerView = binding.donkiList
+        recyclerWeather.adapter = adapter
+        ItemTouchHelper(ItemTouchHelperCallback(adapter))
+            .attachToRecyclerView(recyclerWeather)
     }
 
     private fun renderData(data: AppStates) {
