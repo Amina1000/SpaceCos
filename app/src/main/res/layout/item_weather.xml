@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_top"
     android:backgroundTint="?themeColorPrimary"
-    android:clickable="true"
     android:focusable="true"
     app:cardElevation="@dimen/card_elevation"
     app:rippleColor="@color/color_gray">
@@ -15,81 +14,110 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
-        <GridLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:columnCount="2"
             android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/link"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?textColorPrimary"
-                android:textSize="@dimen/text_size_note"
-                android:textStyle="bold" />
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/link"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:autoLink="all"
-                android:background="@color/white"
-                android:clickable="true"
-                android:textStyle="bold"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                tools:text="@string/link" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/start_time"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?textColorPrimary"
-                android:textSize="@dimen/text_size_note"
-                android:textStyle="bold" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/startTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_text_start"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?textColorPrimary"
-                android:textSize="@dimen/text_size_note"
-                tools:text="@string/start_time" />
+            <GridLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:columnCount="2"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="@string/activity_id"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?textColorPrimary"
-                android:textSize="@dimen/text_size_note" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_time"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="?textColorPrimary"
+                    android:textSize="@dimen/text_size_note"
+                    android:textStyle="bold" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/activityID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?textColorPrimary"
-                tools:text="@string/activity_id"/>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/startTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_text_start"
+                    android:singleLine="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="?textColorPrimary"
+                    android:textSize="@dimen/text_size_note"
+                    tools:text="@string/start_time" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_top"
-                android:text="@string/note_title"
-                android:textStyle="bold"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?textColorPrimary"
-                android:textSize="@dimen/text_size_note" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_id"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="?textColorPrimary"
+                    android:textSize="@dimen/text_size_note"
+                    android:textStyle="bold" />
 
-        </GridLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/activityID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:singleLine="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="?textColorPrimary"
+                    tools:text="@string/activity_id" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_top"
+                    android:text="@string/note_title"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textColor="?textColorPrimary"
+                    android:textSize="@dimen/text_size_note"
+                    android:textStyle="bold" />
+
+            </GridLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/move_item_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_margin="@dimen/margin_text_bottom"
+                    android:tint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/marsTextView"
+                    app:layout_constraintEnd_toStartOf="@+id/addItemImageView"
+                    app:layout_constraintStart_toEndOf="@+id/marsTextView"
+                    app:layout_constraintTop_toTopOf="@+id/marsTextView"
+                    app:srcCompat="@android:drawable/arrow_up_float" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/move_item_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/margin_text_bottom"
+                    android:tint="@color/black"
+                    app:layout_constraintBottom_toBottomOf="@+id/marsTextView"
+                    app:layout_constraintEnd_toStartOf="@+id/addItemImageView"
+                    app:layout_constraintStart_toEndOf="@+id/moveItemUp"
+                    app:layout_constraintTop_toTopOf="@+id/marsTextView"
+                    app:srcCompat="@android:drawable/arrow_down_float" />
+            </FrameLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#000"
+            app:layout_constraintBottom_toBottomOf="@+id/marsDescriptionTextView"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/note_layout"
@@ -106,14 +134,41 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/note"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:textColor="@color/black"
-                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:text="@string/note_example"/>
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@color/black"
+                tools:text="@string/note_example" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/remove_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_text_bottom"
+                app:layout_constraintEnd_toStartOf="@+id/dragHandleImageView"
+                app:layout_constraintTop_toBottomOf="@id/addItemImageView"
+                app:srcCompat="@drawable/ic_archive" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/drag_handle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_text_bottom"
+                android:tint="@color/cardview_shadow_start_color"
+                app:layout_constraintBottom_toBottomOf="@+id/marsTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/marsTextView"
+                app:srcCompat="@drawable/ic_hamburger_menu_bottom_bar" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
 </com.google.android.material.card.MaterialCardView>
