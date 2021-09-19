@@ -21,7 +21,6 @@ class WeatherAdapter :
 
     private val donkiList = ArrayList<Pair<NoteType, DonkiCmeResponseData>>()
 
-
     fun addItems(donkiData: ArrayList<DonkiCmeResponseData>) {
         donkiData.forEach {
             donkiList.add(Pair(NoteType.NOTE, it))
@@ -69,7 +68,7 @@ class WeatherAdapter :
 
     inner class NoteViewHolder(
         itemView: View
-    ) : BaseViewHolder(itemView){
+    ) : BaseViewHolder(itemView),ItemTouchHelperViewHolder{
 
         override fun bind(donki: Pair<NoteType, DonkiCmeResponseData>) {
 
@@ -112,6 +111,14 @@ class WeatherAdapter :
                 }
                 notifyItemMoved(currentPosition, currentPosition + 1)
             }
+        }
+
+        override fun onItemSelected() {
+            itemView.isSelected =true
+        }
+
+        override fun onItemClear() {
+            itemView.isSelected = false
         }
 
     }
