@@ -10,6 +10,8 @@
         <item name="fabColor">@color/gray_700</item>
         <item name="fabTint">@color/yellow_200</item>
         <item name="fontFamily">@font/artifika</item>
+        // 1. Выберите основной шрифт для вашего приложения и используйте его
+        // Реализовала еще на прошлых уроках.
         <item name="android:fontFamily">@font/artifika</item>
         <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
         <item name="shapeAppearanceLargeComponent">@style/AppShapeAppearance.LargeComponent</item>

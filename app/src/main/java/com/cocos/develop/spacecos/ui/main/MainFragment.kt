@@ -1,9 +1,18 @@
 package com.cocos.develop.spacecos.ui.main
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Typeface.BOLD
 import android.net.Uri
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -107,7 +116,14 @@ class MainFragment : Fragment() {
             is AppStates.Success<*> -> {
                 val serverResponseData = data.serverResponseData as PodServerResponseData
                 serverResponseData.title?.let {
-                    binding.bottomSheetLayout.bottomSheetDescriptionHeader.text = it
+                    val spannable = SpannableStringBuilder(it)
+                    spannable.setSpan(ForegroundColorSpan(Color.RED),0,1,
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannable.setSpan(
+                        RelativeSizeSpan(2f),0,1,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    binding.bottomSheetLayout.bottomSheetDescriptionHeader
+                        .setText(spannable,TextView.BufferType.SPANNABLE)
                 }
                 serverResponseData.explanation?.let {
                     binding.bottomSheetLayout.bottomSheetDescription.text = it
