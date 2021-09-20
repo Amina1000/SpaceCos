@@ -15,34 +15,29 @@
         app:layout_constraintTop_toTopOf="parent"
         app:cardBackgroundColor="?themeColorOnPrimary">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_view"
+                android:id="@+id/image_epic"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/bg_earth" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/caption"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/margin_top"
                 android:ellipsize="end"
-                android:gravity="center_vertical|center_horizontal"
+                android:gravity="bottom|center_horizontal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="?android:attr/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_view"
                 tools:text="@string/caption_field" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </FrameLayout>
 
     </com.google.android.material.card.MaterialCardView>
 

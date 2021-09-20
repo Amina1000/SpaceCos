@@ -1,8 +1,15 @@
 package com.cocos.develop.spacecos.ui.mars
 
+import android.graphics.Color
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.cocos.develop.spacecos.R
@@ -49,7 +56,11 @@ class MarsAdapter :
                 itemView.apply {
 
                     mars.sol?.let {
-                        sol.text = it.toString()
+                        val spannable = SpannableStringBuilder(it.toString())
+                        spannable.setSpan(
+                            ForegroundColorSpan(Color.RED),0,spannable.length,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                        sol.text = spannable
                     }
                 }
 

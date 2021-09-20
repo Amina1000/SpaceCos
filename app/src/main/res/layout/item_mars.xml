@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/photo_of_the_day_stub"
-                android:scaleType="centerCrop"
                 app:srcCompat="@drawable/bg_mars" />
 
 
@@ -32,8 +31,6 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:gravity="center_horizontal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:textColor="?android:attr/colorPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
