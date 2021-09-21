@@ -22,7 +22,7 @@ class MarsAdapter :
     RecyclerView.Adapter<MarsAdapter.ViewHolder?>() {
 
     private val marsList = ArrayList<MarsEntity>()
-    private var _binding: ItemMarsBinding? =null
+    private var _binding: ItemMarsBinding? = null
     private val binding
         get() = _binding!!
 
@@ -58,8 +58,9 @@ class MarsAdapter :
                     mars.sol?.let {
                         val spannable = SpannableStringBuilder(it.toString())
                         spannable.setSpan(
-                            ForegroundColorSpan(Color.RED),0,spannable.length,
-                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                            ForegroundColorSpan(Color.RED), 0, spannable.length,
+                            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                        )
                         sol.text = spannable
                     }
                 }
@@ -76,7 +77,7 @@ class MarsAdapter :
                     }
                     imageView.setOnClickListener {
                         isExpanded = !isExpanded
-                        imageView.picScaleAnimation(isExpanded,binding.marsContainer)
+                        imageView.picScaleAnimation(isExpanded, binding.marsContainer)
                     }
                 }
 

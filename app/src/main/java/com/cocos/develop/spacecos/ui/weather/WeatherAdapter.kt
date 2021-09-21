@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.item_weather.view.*
 
 private const val TYPE_NOTE = 0
 private const val TYPE_LINK = 1
+private const val DEFAULT_BACK_COLOR = 0
 
 class WeatherAdapter :
     RecyclerView.Adapter<WeatherAdapter.BaseViewHolder?>(), ItemTouchHelperAdapter {
@@ -73,11 +74,11 @@ class WeatherAdapter :
         override fun bind(donki: Pair<NoteType, DonkiCmeResponseData>) {
 
             itemView.apply {
-                donki.second.activityID?.let {
-                    activityID.text = it
+                donki.second.activityId?.let {
+                    activity_id.text = it
                 }
                 donki.second.startTime?.let {
-                    startTime.text = it
+                    start_time.text = it
                 }
                 donki.second.note?.let {
                     note.setText(it)
@@ -140,7 +141,7 @@ class WeatherAdapter :
         }
 
         override fun onItemClear() {
-            itemView.setBackgroundColor(0)
+            itemView.setBackgroundColor(DEFAULT_BACK_COLOR)
         }
     }
 

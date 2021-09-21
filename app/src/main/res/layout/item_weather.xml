@@ -36,7 +36,7 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/startTime"
+                    android:id="@+id/start_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_text_start"
@@ -56,7 +56,7 @@
                     android:textStyle="bold" />
 
                 <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/activityID"
+                    android:id="@+id/activity_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"

@@ -12,6 +12,8 @@ import com.cocos.develop.spacecos.R
 import com.cocos.develop.spacecos.data.EpicResponseData
 import com.cocos.develop.spacecos.databinding.FragmentEarthBinding
 import com.cocos.develop.spacecos.domain.AppStates
+import com.cocos.develop.spacecos.utils.showViewLoading
+import com.cocos.develop.spacecos.utils.showViewWorking
 import com.cocos.develop.spacecos.utils.toast
 
 class EarthFragment : Fragment() {
@@ -50,6 +52,7 @@ class EarthFragment : Fragment() {
     private fun renderData(data: AppStates) {
         when (data) {
             is AppStates.Success<*> -> {
+                binding.loadingLayout.loadingLayoutContainer.showViewWorking()
                 val serverResponseData = data.serverResponseData as ArrayList<EpicResponseData>
                 serverResponseData.let {
                     adapter.clear()
@@ -57,10 +60,10 @@ class EarthFragment : Fragment() {
                 }
             }
             is AppStates.Loading -> {
-                //showLoading()
+                binding.loadingLayout.loadingLayoutContainer.showViewLoading()
             }
             is AppStates.Error -> {
-                //showError(data.error.message)
+                binding.loadingLayout.loadingLayoutContainer.showViewWorking()
                 toast(data.error.message)
             }
         }

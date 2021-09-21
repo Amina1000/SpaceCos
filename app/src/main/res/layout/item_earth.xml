@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/image_epic"
+                android:id="@+id/epic_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/photo_of_the_day_stub"
