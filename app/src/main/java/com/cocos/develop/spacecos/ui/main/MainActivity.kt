@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), Controller {
     }
 
     private fun setAppSettings() {
+        // реализовала ранее, реализация решает проблему для экрана загрузки
         val spaceTheme = getAppSettings(application)
         if (spaceTheme) {
             setTheme(R.style.SpaceThemeStyle)
