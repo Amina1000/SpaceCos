@@ -27,9 +27,9 @@ class NasaActivity : AppCompatActivity() {
     private val fragments by lazy { listFragments() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setAppSettings()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_api)
-        setAppSettings()
         initViewPage()
         initNavigationMenu()
     }

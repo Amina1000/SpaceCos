@@ -13,7 +13,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="?themeColorOnPrimary">
+        app:cardBackgroundColor="?themeColorPrimary">
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -23,6 +23,7 @@
                 android:id="@+id/epic_image_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/card_bottom_margin"
                 android:contentDescription="@string/photo_of_the_day_stub"
                 app:srcCompat="@drawable/bg_earth" />
 
@@ -34,7 +35,7 @@
                 android:ellipsize="end"
                 android:gravity="bottom|center_horizontal"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                android:textColor="?android:attr/colorPrimary"
+                android:textColor="?android:attr/textColorPrimary"
                 tools:text="@string/caption_field" />
 
         </FrameLayout>
