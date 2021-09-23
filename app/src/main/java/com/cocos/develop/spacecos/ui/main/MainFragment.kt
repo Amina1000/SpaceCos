@@ -2,15 +2,12 @@ package com.cocos.develop.spacecos.ui.main
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Typeface.BOLD
 import android.net.Uri
 import android.os.Bundle
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
-import android.text.style.StyleSpan
 import android.view.*
 import android.widget.TextView
 import android.widget.Toast
@@ -29,6 +26,8 @@ import com.cocos.develop.spacecos.ui.nasa.NasaActivity
 import com.cocos.develop.spacecos.ui.navigation.BottomNavigationDrawerFragment
 import com.cocos.develop.spacecos.ui.settings.SettingsFragment
 import com.cocos.develop.spacecos.utils.picScaleAnimation
+import com.cocos.develop.spacecos.utils.showViewLoading
+import com.cocos.develop.spacecos.utils.showViewWorking
 import com.cocos.develop.spacecos.utils.toast
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -114,14 +113,10 @@ class MainFragment : Fragment() {
     private fun renderData(data: AppStates) {
         when (data) {
             is AppStates.Success<*> -> {
+                binding.bottomSheetLayout.progressBarRound.showViewWorking()
                 val serverResponseData = data.serverResponseData as PodServerResponseData
                 serverResponseData.title?.let {
-                    val spannable = SpannableStringBuilder(it)
-                    spannable.setSpan(ForegroundColorSpan(Color.RED),0,1,
-                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-                    spannable.setSpan(
-                        RelativeSizeSpan(2f),0,1,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    val spannable = getSpannableTitle(it)
                     binding.bottomSheetLayout.bottomSheetDescriptionHeader
                         .setText(spannable,TextView.BufferType.SPANNABLE)
                 }
@@ -130,10 +125,9 @@ class MainFragment : Fragment() {
                 }
                 val url = serverResponseData.url
                 if (url.isNullOrEmpty()) {
-                    //showError("Сообщение, что ссылка пустая")
                     toast("Link is empty")
                 } else {
-                    //showSuccess()
+                    binding.bottomSheetLayout.progressBarRound.showViewWorking()
                     binding.imageView.load(url) {
                         lifecycle(this@MainFragment)
                         error(R.drawable.ic_load_error_vector)
@@ -142,13 +136,26 @@ class MainFragment : Fragment() {
                 }
             }
             is AppStates.Loading -> {
-                //showLoading()
+                binding.bottomSheetLayout.progressBarRound.showViewLoading()
             }
             is AppStates.Error -> {
-                //showError(data.error.message)
+                binding.bottomSheetLayout.progressBarRound.showViewWorking()
                 toast(data.error.message)
             }
         }
+    }
+
+    private fun getSpannableTitle(it: String): SpannableStringBuilder {
+        val spannable = SpannableStringBuilder(it)
+        spannable.setSpan(
+            ForegroundColorSpan(Color.RED), 0, 1,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        spannable.setSpan(
+            RelativeSizeSpan(2f), 0, 1,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        return spannable
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName
 data class DonkiCmeResponseData(
 
     @SerializedName("activityID")
-    val activityID: String?,
+    val activityId: String?,
 
     @SerializedName("note")
     val note: String?,

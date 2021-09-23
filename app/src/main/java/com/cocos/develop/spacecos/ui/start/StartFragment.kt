@@ -71,31 +71,35 @@ class StartFragment : Fragment() {
     //Навешаем кликлистенеры
     private fun setButtonListener() {
         with(binding) {
-            btnMain.setOnClickListener {
-                btnMain.animateWithCircularReveal()
-                Thread {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        (requireActivity() as Controller).openSettingsScreen(MainFragment.newInstance())
-                    }, ANIMATION_DURATION)
-                }.start()
-            }
-            btnNasa.setOnClickListener {
-                btnNasa.animateWithCircularReveal()
-                Thread {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        activity?.let { startActivity(Intent(it, NasaActivity::class.java)) }
-                    }, ANIMATION_DURATION)
-                }.start()
-            }
-            btnSettings.setOnClickListener {
-                btnSettings.animateWithCircularReveal()
-                Thread {
-                    Handler(Looper.getMainLooper()).postDelayed({
-                        (requireActivity() as Controller).openSettingsScreen(SettingsFragment())
-                    }, ANIMATION_DURATION)
-                }.start()
-            }
+            setupViews()
         }
 
+    }
+
+    private fun FragmentStartBinding.setupViews() {
+        btnMain.setOnClickListener {
+            btnMain.animateWithCircularReveal()
+            Thread {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    (requireActivity() as Controller).openSettingsScreen(MainFragment.newInstance())
+                }, ANIMATION_DURATION)
+            }.start()
+        }
+        btnNasa.setOnClickListener {
+            btnNasa.animateWithCircularReveal()
+            Thread {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    activity?.let { startActivity(Intent(it, NasaActivity::class.java)) }
+                }, ANIMATION_DURATION)
+            }.start()
+        }
+        btnSettings.setOnClickListener {
+            btnSettings.animateWithCircularReveal()
+            Thread {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    (requireActivity() as Controller).openSettingsScreen(SettingsFragment())
+                }, ANIMATION_DURATION)
+            }.start()
+        }
     }
 }

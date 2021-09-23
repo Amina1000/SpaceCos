@@ -19,6 +19,10 @@
         <item name="materialCardViewStyle">@style/AppCard</item>
     </style>
 
+    <style name="BaseThemeStyle.Splash">
+        <item name="android:windowBackground">@drawable/splash_background_drawable</item>
+    </style>
+
     <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/view_corner</item>

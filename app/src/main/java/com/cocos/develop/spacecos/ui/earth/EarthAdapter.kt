@@ -61,14 +61,14 @@ class EarthAdapter :
                     }
 
                     earth.pathPicture?.let {
-                        imageEpic.load(it) {
+                        epicImageView.load(it) {
                             context
                             error(R.drawable.ic_load_error_vector)
                             placeholder(R.drawable.bg_earth)
                         }
-                        imageEpic.setOnClickListener {
+                        epicImageView.setOnClickListener {
                             isExpanded = !isExpanded
-                            imageEpic.picScaleAnimation(isExpanded,binding.earthContainer)
+                            epicImageView.picScaleAnimation(isExpanded,binding.earthContainer)
                         }
 
                     }
